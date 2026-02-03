@@ -51,3 +51,12 @@ def guardar_negocio(nombre, direccion, tiene_web, categoria=None, rating=None, t
 
     conn.commit()
     conn.close()
+
+def obtener_negocios():
+    conn = conectar()
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM negocios")
+    datos = cursor.fetchall()
+    conn.close()
+    return datos
