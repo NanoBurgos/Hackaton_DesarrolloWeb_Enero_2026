@@ -5,3 +5,8 @@ class User(UserMixin):
         self.id = id
         self.username = username
         self.role = role
+
+def get_user_by_id(user_id):
+    if user_id == "1":
+        return User("1", "admin", "admin")
+    return None
