@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login - LeadHunter Pro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-box {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 1rem;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-box input {
+            width: 100%;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
+
+        .login-box button {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-box">
+        <h1>LeadHunter Pro</h1>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Demo Hackathon Access</p>
+        <form action="/login" method="POST">
+            <input type="text" name="username" placeholder="Username (ej: admin)" required>
+            <input type="password" name="password" placeholder="Password (para demo cualquier valor)">
+            <button type="submit">Entrar</button>
+        </form>
+        <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-secondary);">Tip: Usa 'admin' como usuario</p>
+    </div>
+</body>
+
+</html>
