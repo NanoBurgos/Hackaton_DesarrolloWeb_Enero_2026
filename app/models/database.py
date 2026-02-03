@@ -26,3 +26,13 @@ def db_init():
         status TEXT DEFAULT 'Pendiente'
     )
     """)
+
+    # Tabla Usuarios
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS usuarios (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT UNIQUE,
+        password TEXT,
+        role TEXT DEFAULT 'freelancer'
+    )
+    """)
