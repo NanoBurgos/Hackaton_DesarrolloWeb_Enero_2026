@@ -36,3 +36,6 @@ def db_init():
         role TEXT DEFAULT 'freelancer'
     )
     """)
+
+    conn.commit()
+    conn.close()
