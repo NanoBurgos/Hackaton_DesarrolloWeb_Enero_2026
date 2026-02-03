@@ -39,3 +39,15 @@ def db_init():
 
     conn.commit()
     conn.close()
+
+def guardar_negocio(nombre, direccion, tiene_web, categoria=None, rating=None, telefono=None, lat=None, lon=None):
+    conn = conectar()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    INSERT INTO negocios (nombre, direccion, tiene_web, categoria, rating, telefono, lat, lon)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    """, (nombre, direccion, int(tiene_web), categoria, rating, telefono, lat, lon))
+
+    conn.commit()
+    conn.close()
