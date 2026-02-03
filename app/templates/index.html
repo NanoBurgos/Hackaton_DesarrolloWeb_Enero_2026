@@ -9,3 +9,38 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>LeadHunter Pro </h1>
+            <div class="user-info">
+                <a href="/exportar" class="badge export-btn" style="text-decoration:none">Exportar CSV </a>
+                <a href="/limpiar" class="badge"
+                    style="text-decoration:none; background: var(--danger); border-color: var(--danger);">Limpiar
+                    Historial </a>
+                <span style="margin-left:1rem">Freelancer Demo</span>
+            </div>
+        </header>
+
+        <section class="controls">
+            <form action="/scrapear" method="POST" style="display:flex; gap:1rem; width:100%">
+                <input type="text" name="query" placeholder="Ej: Restaurante en Asunción" style="flex-grow:1" required>
+                <button type="submit">Scrapear Leads</button>
+            </form>
+        </section>
+
+        <div id="map"></div>
+
+        <section class="filters-bar">
+            <label class="switch-container">
+                <input type="checkbox" id="filterWeb">
+                <span class="slider"></span>
+                <span class="label-text">Mostrar solo oportunidades (Sin Web) </span>
+            </label>
+            <span id="resultsCount" style="color: var(--text-secondary); font-size: 0.9rem;"></span>
+        </section>
+    
+</body>
+
+</html>
