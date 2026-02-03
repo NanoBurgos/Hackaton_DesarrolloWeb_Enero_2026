@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -40,7 +40,76 @@
             </label>
             <span id="resultsCount" style="color: var(--text-secondary); font-size: 0.9rem;"></span>
         </section>
-    
+
+        <div class="grid" id="resultsGrid">
+            {% for n in negocios %}
+            <div class="card" data-lat="{{ n.lat }}" data-lon="{{ n.lon }}" data-nombre="{{ n.nombre }}">
+                <h3>{{ n.nombre }}</h3>
+                <p><strong>Categoría:</strong> {{ n.categoria }}</p>
+                <p><strong></strong> {{ n.direccion }}</p>
+                <p><strong></strong> {{ n.rating or 'N/A' }} | <strong>📞</strong> {{ n.telefono or 'N/A' }}</p>
+
+                {% if not n.tiene_web %}
+                <span class="badge badge-web-no">Oportunidad: Sin Web 🟢</span>
+                {% else %}
+                <span class="badge badge-web-yes">Tiene Web 🔴</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const map = L.map('map').setView([-25.2867, -57.647], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            const markers = [];
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const lat = card.dataset.lat;
+                const lon = card.dataset.lon;
+                const nombre = card.dataset.nombre;
+                const hasWeb = card.querySelector('.badge-web-yes') !== null;
+
+                if (lat && lon) {
+                    const marker = L.marker([lat, lon]).addTo(map)
+                        .bindPopup(`<b>${nombre}</b>`);
+                    markers.push({ marker, hasWeb, card });
+                }
+            });
+
+            const filterToggle = document.getElementById('filterWeb');
+            const resultsCount = document.getElementById('resultsCount');
+
+            function applyFilter() {
+                const showOnlyNoWeb = filterToggle.checked;
+                let visibleCount = 0;
+
+                markers.forEach(({ marker, hasWeb, card }) => {
+                    const shouldShow = !showOnlyNoWeb || !hasWeb;
+
+                    if (shouldShow) {
+                        marker.addTo(map);
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        map.removeLayer(marker);
+                        card.style.display = 'none';
+                    }
+                });
+
+                resultsCount.textContent = `Mostrando ${visibleCount} de ${cards.length} resultados`;
+            }
+
+            filterToggle.addEventListener('change', applyFilter);
+            applyFilter(); // Ejecutar al cargar
+        });
+    </script>
 </body>
 
 </html>
