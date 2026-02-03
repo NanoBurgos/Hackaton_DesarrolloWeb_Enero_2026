@@ -60,3 +60,11 @@ def obtener_negocios():
     datos = cursor.fetchall()
     conn.close()
     return datos
+
+def exportar_csv():
+    conn = conectar()
+    df = pd.read_sql_query("SELECT * FROM negocios", conn)
+    path = "leads_export.csv"
+    df.to_csv(path, index=False)
+    conn.close()
+    return os.path.abspath(path)
