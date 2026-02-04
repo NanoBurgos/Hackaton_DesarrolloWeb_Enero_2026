@@ -27,6 +27,30 @@ La aplicación analiza negocios locales (por ejemplo restaurantes, comercios, se
 De esta manera, la plataforma funciona como una herramienta de prospección inteligente, permitiendo a freelancers detectar oportunidades reales de negocio basadas en datos públicos y actualizados, en lugar de búsquedas manuales o aproximaciones poco precisas.
 ________________________________________
 
+# **Problema**
+
+Miles de negocios locales figuran en Google Maps pero no cuentan con página web, lo que reduce su visibilidad y competitividad.
+
+Al mismo tiempo, programadores freelance pierden tiempo buscando clientes potenciales sin datos claros ni segmentación.
+
+Hoy la prospección es manual, poco eficiente y desordenada.
+
+# **Solución**
+
+Desarrollamos una web app que:
+
+- Recolecta automáticamente datos públicos de Google Maps
+
+- Identifica negocios que no tienen sitio web
+
+- Los muestra en una plataforma donde freelancers pueden filtrarlos y contactarlos
+
+El resultado es un flujo real y completo:
+
+                Detectar oportunidad → filtrar → ver contacto → accionar
+
+________________________________________
+
 🏗️ **Arquitectura del proyecto**
 
 Navegador (Frontend)
